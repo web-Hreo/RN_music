@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize:pxToDp(20),
-    fontWeight:'bold'
+    fontWeight:'bold',
+    color:'#fff'
   },
   btn:{
     fontSize:pxToDp(12),
@@ -41,5 +42,6 @@ const styles = StyleSheet.create({
     borderStyle:'solid',
     borderColor:'#999',
     borderRadius:pxToDp(10),
+    color:'#fff'
   }
 })

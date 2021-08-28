@@ -35,9 +35,6 @@ export default class RecommendNewSong extends Component {
       <View style={styles.newSong}>
         <PublicTitle {...randomTitleInfo} />
         <View style={styles.newSongBox}>
-          <View>
-            
-          </View>
           {recommendNewSong.map((it,i) =>{ return (
             <View style={styles.songItem} key={i}>
               <Image style={styles.songImg} source={{uri:it.picUrl}} />
@@ -57,7 +54,6 @@ export default class RecommendNewSong extends Component {
 
 const styles = StyleSheet.create({
   newSong:{
-    backgroundColor:'#fff'
   },
   newSongBox:{
     paddingLeft:pxToDp(10),
@@ -79,7 +75,7 @@ const styles = StyleSheet.create({
   songName:{
     paddingLeft:pxToDp(10),
     fontSize:pxToDp(15),
-    color:'#000'
+    color:'#fff'
   },
   songSinger:{
     paddingLeft:pxToDp(10),

@@ -108,7 +108,7 @@ export default class Home extends Component {
 const styles = StyleSheet.create({
   content:{
     flex:1,
-    backgroundColor:'#e5e5e5',
+    backgroundColor:'#1A1A1A',
     color:'#e5e5e5'
   },
   tinyLogo: {
@@ -121,13 +121,11 @@ const styles = StyleSheet.create({
     right:pxToDp(20),
     height:pxToDp(40),
     top:pxToDp(110),
-    backgroundColor:'#fff',
     borderRadius:pxToDp(5),
     paddingLeft:pxToDp(15)
   },
   // 圆形图标入口列表***************************************************
   ballScroll:{
-    backgroundColor: '#fff',
     paddingTop:pxToDp(10),
     paddingBottom:pxToDp(10),
   },
@@ -139,17 +137,17 @@ const styles = StyleSheet.create({
   ballImg:{
     width:pxToDp(50),
     height:pxToDp(50),
-    backgroundColor:'#000',
+    backgroundColor:'red',
     borderRadius:100
   },
   ballText:{
     paddingTop:pxToDp(5),
     textAlign:'center',
-    fontSize:pxToDp(11)
+    fontSize:pxToDp(11),
+    color:'#fff'
   },
   // 推荐***************************************************
   recommend:{
-    backgroundColor: '#fff',
   },
   // ScrollView:{
   //   flex:1,
@@ -184,7 +182,8 @@ const styles = StyleSheet.create({
   },
   song_list_text:{
     fontSize:pxToDp(12),
-    paddingBottom:pxToDp(20)
+    paddingBottom:pxToDp(20),
+    color:'#fff'
   },
   icon: {
     width: 26,height: 26,

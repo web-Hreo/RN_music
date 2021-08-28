@@ -22,7 +22,7 @@ export default class TabBar extends Component {
   }
   render() {
     return (
-      <TabNavigator>
+      <TabNavigator tabBarActiveBackgroundColor='#000'>
         <TabNavigator.Item
           selected={this.state.selectedTab === 'home'}
           title="发现"
@@ -49,6 +49,7 @@ export default class TabBar extends Component {
           <My/>
         </TabNavigator.Item>
       </TabNavigator>
+      
     )
   }
 }
