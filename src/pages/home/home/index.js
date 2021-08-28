@@ -50,7 +50,7 @@ export default class Home extends Component {
     return (
       <View style={styles.content}>
         <ScrollView showsVerticalScrollIndicator={false}>
-          <StatusBar backgroundColor='transparent' barStyle='light-content' translucent={true}></StatusBar>
+          {/* <StatusBar backgroundColor='transparent' barStyle='light-content' translucent={true}></StatusBar> */}
           <Image style={styles.tinyLogo}  source={{uri: 'https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/assets/image/article_bg/_14.jpg',}}/>
           <TextInput style={styles.search} placeholder="请输入歌单名称"></TextInput>
 
@@ -97,7 +97,7 @@ export default class Home extends Component {
   //推荐歌单
   renderSong({item}){
     return(
-      <TouchableOpacity onPress={() =>this.goReSongDetail(item)} style={styles.song_list}>
+      <TouchableOpacity activeOpacity={0.9} onPress={() =>this.goReSongDetail(item)} style={styles.song_list} >
         <Image style={styles.songListImg} source={{uri:item.picUrl}} resizeMode="cover"></Image>
         <Text numberOfLines={2} style={styles.song_list_text}>{item.name}</Text>
       </TouchableOpacity> 

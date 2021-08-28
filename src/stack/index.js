@@ -14,6 +14,11 @@ import SongListDetail from '../pages/home/songListDetail'
 
 const Stack = createStackNavigator()
 
+const screenOptions = {
+  headerMode: 'screen',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: 'tomato' },
+}
 function testScreen({navigation}) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
@@ -37,12 +42,16 @@ function test2Screen() {
 function StackFrame(){
   return (
     <NavigationContainer>
-      <Stack.Navigator headerMode="none" initialRouteName="TabBar">
-        <Stack.Screen name="TabBar" component={TabBar} />
+      <Stack.Navigator screenOptions={{
+        headerMode: 'screen',
+        headerTintColor: 'white',
+        headerStyle: { backgroundColor: 'black' },
+      }}  initialRouteName="TabBar">
+        <Stack.Screen name="TabBar" options={{ title: '首页' }} component={TabBar} />
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Hot" component={Hot} />
         <Stack.Screen name="My" component={My} />
-        <Stack.Screen name="SongListDetail" component={SongListDetail} />
+        <Stack.Screen name="SongListDetail" options={{ title: '精选歌单' }} component={SongListDetail} />
         <Stack.Screen name="test" component={testScreen} />
         <Stack.Screen name="test2" component={test2Screen} />
       </Stack.Navigator>
