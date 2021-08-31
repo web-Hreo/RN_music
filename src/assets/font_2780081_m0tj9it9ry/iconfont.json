@@ -1,0 +1,352 @@
+{
+  "id": "2780081",
+  "name": "rn_music",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "14418920",
+      "name": "previous-line-circle",
+      "font_class": "previous-line-circle",
+      "unicode": "e744",
+      "unicode_decimal": 59204
+    },
+    {
+      "icon_id": "14418921",
+      "name": "cdsvg",
+      "font_class": "cdsvg",
+      "unicode": "e745",
+      "unicode_decimal": 59205
+    },
+    {
+      "icon_id": "14418922",
+      "name": "radio",
+      "font_class": "radio",
+      "unicode": "e746",
+      "unicode_decimal": 59206
+    },
+    {
+      "icon_id": "14418923",
+      "name": "previous-cirlce",
+      "font_class": "previous-cirlce",
+      "unicode": "e747",
+      "unicode_decimal": 59207
+    },
+    {
+      "icon_id": "14418924",
+      "name": "random",
+      "font_class": "random",
+      "unicode": "e748",
+      "unicode_decimal": 59208
+    },
+    {
+      "icon_id": "14418925",
+      "name": "song-circle",
+      "font_class": "song-circle",
+      "unicode": "e749",
+      "unicode_decimal": 59209
+    },
+    {
+      "icon_id": "14418926",
+      "name": "rewind",
+      "font_class": "rewind",
+      "unicode": "e74a",
+      "unicode_decimal": 59210
+    },
+    {
+      "icon_id": "14418927",
+      "name": "remote",
+      "font_class": "remote",
+      "unicode": "e74b",
+      "unicode_decimal": 59211
+    },
+    {
+      "icon_id": "14418929",
+      "name": "song",
+      "font_class": "song",
+      "unicode": "e74c",
+      "unicode_decimal": 59212
+    },
+    {
+      "icon_id": "14418930",
+      "name": "speaker",
+      "font_class": "speaker",
+      "unicode": "e74d",
+      "unicode_decimal": 59213
+    },
+    {
+      "icon_id": "14418931",
+      "name": "stop-circle",
+      "font_class": "stop-circle",
+      "unicode": "e74e",
+      "unicode_decimal": 59214
+    },
+    {
+      "icon_id": "14418932",
+      "name": "stop",
+      "font_class": "stop",
+      "unicode": "e74f",
+      "unicode_decimal": 59215
+    },
+    {
+      "icon_id": "14418933",
+      "name": "tapes-1",
+      "font_class": "tapes-1",
+      "unicode": "e750",
+      "unicode_decimal": 59216
+    },
+    {
+      "icon_id": "14418934",
+      "name": "tapes",
+      "font_class": "tapes",
+      "unicode": "e751",
+      "unicode_decimal": 59217
+    },
+    {
+      "icon_id": "14418935",
+      "name": "switch-mode",
+      "font_class": "switch-mode",
+      "unicode": "e752",
+      "unicode_decimal": 59218
+    },
+    {
+      "icon_id": "14418936",
+      "name": "up",
+      "font_class": "up",
+      "unicode": "e753",
+      "unicode_decimal": 59219
+    },
+    {
+      "icon_id": "14418937",
+      "name": "upload",
+      "font_class": "upload",
+      "unicode": "e754",
+      "unicode_decimal": 59220
+    },
+    {
+      "icon_id": "14418938",
+      "name": "video-player",
+      "font_class": "video-player",
+      "unicode": "e755",
+      "unicode_decimal": 59221
+    },
+    {
+      "icon_id": "14418939",
+      "name": "voice-recorder",
+      "font_class": "voice-recorder",
+      "unicode": "e756",
+      "unicode_decimal": 59222
+    },
+    {
+      "icon_id": "14418940",
+      "name": "video-player-1",
+      "font_class": "video-player-1",
+      "unicode": "e757",
+      "unicode_decimal": 59223
+    },
+    {
+      "icon_id": "14418941",
+      "name": "volume-line",
+      "font_class": "volume-line",
+      "unicode": "e758",
+      "unicode_decimal": 59224
+    },
+    {
+      "icon_id": "14418942",
+      "name": "volume-square",
+      "font_class": "volume-square",
+      "unicode": "e759",
+      "unicode_decimal": 59225
+    },
+    {
+      "icon_id": "14418943",
+      "name": "volume-circle",
+      "font_class": "volume-circle",
+      "unicode": "e75a",
+      "unicode_decimal": 59226
+    },
+    {
+      "icon_id": "14418944",
+      "name": "volume-video",
+      "font_class": "volume-video",
+      "unicode": "e75b",
+      "unicode_decimal": 59227
+    },
+    {
+      "icon_id": "14417788",
+      "name": "未命名",
+      "font_class": "weimingming",
+      "unicode": "e71d",
+      "unicode_decimal": 59165
+    },
+    {
+      "icon_id": "14418896",
+      "name": "flashdisk",
+      "font_class": "flashdisk",
+      "unicode": "e72c",
+      "unicode_decimal": 59180
+    },
+    {
+      "icon_id": "14418897",
+      "name": "download",
+      "font_class": "download",
+      "unicode": "e72d",
+      "unicode_decimal": 59181
+    },
+    {
+      "icon_id": "14418898",
+      "name": "headphone",
+      "font_class": "headphone",
+      "unicode": "e72e",
+      "unicode_decimal": 59182
+    },
+    {
+      "icon_id": "14418899",
+      "name": "ipod",
+      "font_class": "ipod",
+      "unicode": "e72f",
+      "unicode_decimal": 59183
+    },
+    {
+      "icon_id": "14418900",
+      "name": "earphone",
+      "font_class": "earphone",
+      "unicode": "e730",
+      "unicode_decimal": 59184
+    },
+    {
+      "icon_id": "14418901",
+      "name": "mic",
+      "font_class": "mic",
+      "unicode": "e731",
+      "unicode_decimal": 59185
+    },
+    {
+      "icon_id": "14418902",
+      "name": "media",
+      "font_class": "media",
+      "unicode": "e732",
+      "unicode_decimal": 59186
+    },
+    {
+      "icon_id": "14418903",
+      "name": "next-1",
+      "font_class": "next-1",
+      "unicode": "e733",
+      "unicode_decimal": 59187
+    },
+    {
+      "icon_id": "14418904",
+      "name": "music-node",
+      "font_class": "music-node",
+      "unicode": "e734",
+      "unicode_decimal": 59188
+    },
+    {
+      "icon_id": "14418905",
+      "name": "mouse",
+      "font_class": "mouse",
+      "unicode": "e735",
+      "unicode_decimal": 59189
+    },
+    {
+      "icon_id": "14418906",
+      "name": "next",
+      "font_class": "next",
+      "unicode": "e736",
+      "unicode_decimal": 59190
+    },
+    {
+      "icon_id": "14418907",
+      "name": "next-circle",
+      "font_class": "next-circle",
+      "unicode": "e737",
+      "unicode_decimal": 59191
+    },
+    {
+      "icon_id": "14418908",
+      "name": "node",
+      "font_class": "node",
+      "unicode": "e738",
+      "unicode_decimal": 59192
+    },
+    {
+      "icon_id": "14418909",
+      "name": "pause-circle",
+      "font_class": "pause-circle",
+      "unicode": "e739",
+      "unicode_decimal": 59193
+    },
+    {
+      "icon_id": "14418910",
+      "name": "pause",
+      "font_class": "pause",
+      "unicode": "e73a",
+      "unicode_decimal": 59194
+    },
+    {
+      "icon_id": "14418911",
+      "name": "next-line-circle",
+      "font_class": "next-line-circle",
+      "unicode": "e73b",
+      "unicode_decimal": 59195
+    },
+    {
+      "icon_id": "14418912",
+      "name": "play circle",
+      "font_class": "playcircle",
+      "unicode": "e73c",
+      "unicode_decimal": 59196
+    },
+    {
+      "icon_id": "14418913",
+      "name": "play-circle",
+      "font_class": "play-circle",
+      "unicode": "e73d",
+      "unicode_decimal": 59197
+    },
+    {
+      "icon_id": "14418914",
+      "name": "play",
+      "font_class": "play",
+      "unicode": "e73e",
+      "unicode_decimal": 59198
+    },
+    {
+      "icon_id": "14418915",
+      "name": "previous-1",
+      "font_class": "previous-1",
+      "unicode": "e73f",
+      "unicode_decimal": 59199
+    },
+    {
+      "icon_id": "14418916",
+      "name": "playlist",
+      "font_class": "playlist",
+      "unicode": "e740",
+      "unicode_decimal": 59200
+    },
+    {
+      "icon_id": "14418917",
+      "name": "playlist-music",
+      "font_class": "playlist-music",
+      "unicode": "e741",
+      "unicode_decimal": 59201
+    },
+    {
+      "icon_id": "14418918",
+      "name": "pause-line-circle",
+      "font_class": "pause-line-circle",
+      "unicode": "e742",
+      "unicode_decimal": 59202
+    },
+    {
+      "icon_id": "14418919",
+      "name": "previous",
+      "font_class": "previous",
+      "unicode": "e743",
+      "unicode_decimal": 59203
+    }
+  ]
+}
