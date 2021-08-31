@@ -4,7 +4,7 @@ import {songDetail} from '../../../api/home'
 import { pxToDp } from '../../../utils/styleKitsKits'
 import moment from 'moment'
 
-const SongListDetail = (props) =>{
+export default SongListDetail = (props) =>{
   const id  = props.route.params.songId
   const [playlist,setPlayList] = useState([])//歌单数据
   const [tracks,setTracks] = useState({})//推荐新音乐
@@ -22,14 +22,16 @@ const SongListDetail = (props) =>{
   const getRecommendSong = async() =>{
     const {playlist} = await songDetail({id})
     playlist.updateTimeMoment = moment(playlist.updateTime).format('YYYY-MM-DD HH:MM')
+    console.log(playlist);
     setPlayList(playlist)
     setTracks(playlist.tracks)
     setCreator(playlist.creator)
+    console.log('this.state.tracks',this.state.tracks);
   }
 
   useEffect(() => {
     getRecommendSong()
-  }, [isRefreshing])
+  }, [])
 
   return (
     <ScrollView style={styles.songList_detail} 
@@ -71,7 +73,6 @@ const SongListDetail = (props) =>{
     </ScrollView>
   )
 }
-export default SongListDetail
 
 const styles = StyleSheet.create({
   songList_detail:{

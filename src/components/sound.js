@@ -13,7 +13,7 @@ const music = new Sound(musciPath,null,(error)=>{
   error && Alert.alert("播放失败...")
 })
 
-const Ceshi = () => {
+const MySound = () => {
   const [title, updateTitle] = useState(undefined)
 
   const getData = () => {
@@ -68,4 +68,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default Ceshi
+export default MySound
