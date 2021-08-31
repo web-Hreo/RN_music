@@ -1,10 +1,16 @@
 import React, { useReducer,useState, useEffect, useRef } from 'react';
 import { Text, StyleSheet, View,Image, ScrollView,RefreshControl,TouchableOpacity } from 'react-native'
 import {songDetail} from '../../../api/home'
+import {getSongUrl} from '../../../api/public'
 import { pxToDp } from '../../../utils/styleKitsKits'
+import { setSongUrl} from '../../../reducer/actions'
+import {initState, initReducer} from '../../../reducer/reducer'
 import moment from 'moment'
 
 const SongListDetail = (props) =>{
+  
+  const [state, dispatch] = useReducer(initReducer, initState)
+
   const id  = props.route.params.songId
   const [playlist,setPlayList] = useState([])//歌单数据
   const [tracks,setTracks] = useState({})//推荐新音乐
@@ -27,12 +33,17 @@ const SongListDetail = (props) =>{
     setCreator(playlist.creator)
   }
   //更改全局音乐变量 
-  const musicPlay = async()=>{
-
+  const musicPlay = async(it)=>{
+    console.log(it);
+    const {data} = await getSongUrl({id:it.id})
+    console.log(data[0].url);
+    dispatch(setSongUrl(data[0].url))
+    console.log('state.list',state.songUrl);
   }
 
   useEffect(() => {
     getRecommendSong()
+    console.log('useEffect state.list',state.songUrl);
   }, [isRefreshing])
 
   return (
@@ -43,7 +54,7 @@ const SongListDetail = (props) =>{
           onRefresh = {() => onRefreshHandle()}
         />
       }
-    >
+    > 
       <Image style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
       <Text style={[styles.detail_text,styles.detail_time]}>更新于{playlist.updateTimeMoment} </Text>
       <Text style={[styles.detail_text,styles.detail_name]}>{playlist.name}</Text>
@@ -61,7 +72,7 @@ const SongListDetail = (props) =>{
       {
         tracks.length>0 && tracks.map((it,i) =>{
           return(
-            <TouchableOpacity activeOpacity={0.8} onPress={() =>musicPlay()} style={styles.songItem} key={i}>
+            <TouchableOpacity activeOpacity={0.8} onPress={() =>musicPlay(it)} style={styles.songItem} key={i}>
             <Image style={styles.songImg} source={{uri:it.al.picUrl}} />
             <View>
               <Text numberOfLines={1} style={styles.songName}>{it.al.name}</Text>
