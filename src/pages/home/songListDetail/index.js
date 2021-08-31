@@ -1,5 +1,5 @@
 import React, { useReducer,useState, useEffect, useRef } from 'react';
-import { Text, StyleSheet, View,Image, ScrollView,RefreshControl } from 'react-native'
+import { Text, StyleSheet, View,Image, ScrollView,RefreshControl,TouchableOpacity } from 'react-native'
 import {songDetail} from '../../../api/home'
 import { pxToDp } from '../../../utils/styleKitsKits'
 import moment from 'moment'
@@ -25,6 +25,10 @@ const SongListDetail = (props) =>{
     setPlayList(playlist)
     setTracks(playlist.tracks)
     setCreator(playlist.creator)
+  }
+  //更改全局音乐变量 
+  const musicPlay = async()=>{
+
   }
 
   useEffect(() => {
@@ -57,13 +61,13 @@ const SongListDetail = (props) =>{
       {
         tracks.length>0 && tracks.map((it,i) =>{
           return(
-            <View style={styles.songItem} key={i}>
+            <TouchableOpacity activeOpacity={0.8} onPress={() =>musicPlay()} style={styles.songItem} key={i}>
             <Image style={styles.songImg} source={{uri:it.al.picUrl}} />
             <View>
               <Text numberOfLines={1} style={styles.songName}>{it.al.name}</Text>
               <Text style={styles.songSinger}>{it.ar[0].name}</Text>
             </View>
-          </View>
+          </TouchableOpacity>
           )
         })
       }
