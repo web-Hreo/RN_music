@@ -5,33 +5,37 @@ import Sound from 'react-native-sound';
 import {pxToDp} from '../utils/styleKitsKits'
 import SvgUri from "react-native-svg-uri";
 import {icon_play} from '../assets/iconfont/iconSVG'
+import {connect} from 'react-redux';
 
 
-
-
-
-const MySound = () => {
-
-  const [title, updateTitle] = useState(undefined)
-  const musicPath = 'http://m7.music.126.net/20210831162235/87a7652ff1d049ea6f19f70d28ad6b24/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3338741765/7266/3563/ee25/23947886151d49a69a2ff01a0f2c311c.'
-  // 网络资源
-  const music = new Sound(musicPath,null,(error)=>{
-    console.log(error);
+const MySound = (props) => {
+  const [musicPath, set_musicPath] = useState('http://m801.music.126.net/20210903003803/64e3d9c456ee48ccb198297432ac4ccb/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/10455510134/f89a/cb0f/0394/484a2505c45e5249ab114a3f0c21fc8a.mp3')
+  let music
+  music = new Sound(props.songUrl,null,(error)=>{
+    error &&console.log(error);
   })
 
-  const getData = () => {
-    updateTitle('111111111111')
+  // 网络资源
+  const play  =()=>{
+    music.stop(()=>{
+      music.play();
+    }); 
   }
-
   useEffect(() => {
-    getData()
-  }, [])
+    console.log('MySound-props',props.songUrl);
+    
+    if(props.songUrl){
+      set_musicPath(props.songUrl)
+      // loaded successfully
+  console.log('duration in seconds: ' + music.getDuration() + 'number of channels: ' + music.getNumberOfChannels());
+    }
+  }, [props.songUrl,musicPath])
 
   return (
-    <TouchableOpacity activeOpacity={1}  style={styles.sound} onPress={()=>{music.play()}}>
+    <TouchableOpacity activeOpacity={1}  style={styles.sound} >
       <Image style={styles.sound_picUrl}  source={{uri: 'http://p1.music.126.net/4NJvc1HOi4uv7cs4501Bjg==/109951166324714668.jpg',}}/>
       <Text style={styles.sound_musicNam} numberOfLines={1}>回春丹回春丹回春丹回春丹回春丹回春丹</Text>
-      <TouchableOpacity onPress={()=>{music.play()}}>
+      <TouchableOpacity onPress={()=>{play()}}>
         <SvgUri style={styles.input_icon} svgXmlData={icon_play} width={pxToDp(12)} height={pxToDp(12)}/>
       </TouchableOpacity>
       
@@ -42,6 +46,11 @@ const MySound = () => {
     </TouchableOpacity>
   )
 }
+
+export default connect(
+  state =>({songUrl: state.counter.songUrl})//是一个函数
+)(MySound)
+
 const styles = StyleSheet.create({
   sound:{
       width:pxToDp(330),
@@ -71,4 +80,3 @@ const styles = StyleSheet.create({
     }
 })
 
-export default MySound

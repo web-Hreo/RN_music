@@ -36,7 +36,6 @@ const SongListDetail = (props) =>{
     console.log(it);
     const {data} = await getSongUrl({id:it.id})
     console.log(data[0].url);
-    console.log(props);
     props.setSongUrl(data[0].url)
     console.log(props);
   }
@@ -56,7 +55,6 @@ const SongListDetail = (props) =>{
         />
       }
     > 
-    <Text style={[styles.detail_text,styles.detail_time]}>{props.songUrl}</Text>
       <Image style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
       <Text style={[styles.detail_text,styles.detail_time]}>更新于{playlist.updateTimeMoment} </Text>
       <Text style={[styles.detail_text,styles.detail_name]}>{playlist.name}</Text>
