@@ -5,14 +5,12 @@ import Sound from 'react-native-sound';
 import {pxToDp} from '../utils/styleKitsKits'
 import SvgUri from "react-native-svg-uri";
 import {icon_play} from '../assets/iconfont/iconSVG'
-import {initState, initReducer} from '../reducer/reducer'
 
 
 
 
 
 const MySound = () => {
-  const [state, dispatch] = useReducer(initReducer, initState)
 
   const [title, updateTitle] = useState(undefined)
   const musicPath = 'http://m7.music.126.net/20210831162235/87a7652ff1d049ea6f19f70d28ad6b24/ymusic/obj/w5zDlMODwrDDiGjCn8Ky/3338741765/7266/3563/ee25/23947886151d49a69a2ff01a0f2c311c.'
@@ -26,13 +24,11 @@ const MySound = () => {
   }
 
   useEffect(() => {
-    console.log('useEffect state.list',state.songUrl);
     getData()
-  }, [state.songUrl])
+  }, [])
 
   return (
     <TouchableOpacity activeOpacity={1}  style={styles.sound} onPress={()=>{music.play()}}>
-      <Text>{state.songUrl}</Text>
       <Image style={styles.sound_picUrl}  source={{uri: 'http://p1.music.126.net/4NJvc1HOi4uv7cs4501Bjg==/109951166324714668.jpg',}}/>
       <Text style={styles.sound_musicNam} numberOfLines={1}>回春丹回春丹回春丹回春丹回春丹回春丹</Text>
       <TouchableOpacity onPress={()=>{music.play()}}>

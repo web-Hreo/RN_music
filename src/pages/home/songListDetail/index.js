@@ -3,13 +3,12 @@ import { Text, StyleSheet, View,Image, ScrollView,RefreshControl,TouchableOpacit
 import {songDetail} from '../../../api/home'
 import {getSongUrl} from '../../../api/public'
 import { pxToDp } from '../../../utils/styleKitsKits'
-import { setSongUrl} from '../../../reducer/actions'
-import {initState, initReducer} from '../../../reducer/reducer'
+// 1.引入connect连接操作
+import {connect} from 'react-redux';
 import moment from 'moment'
 
 const SongListDetail = (props) =>{
   
-  const [state, dispatch] = useReducer(initReducer, initState)
 
   const id  = props.route.params.songId
   const [playlist,setPlayList] = useState([])//歌单数据
@@ -37,13 +36,10 @@ const SongListDetail = (props) =>{
     console.log(it);
     const {data} = await getSongUrl({id:it.id})
     console.log(data[0].url);
-    dispatch(setSongUrl(data[0].url))
-    console.log('state.list',state.songUrl);
   }
 
   useEffect(() => {
     getRecommendSong()
-    console.log('useEffect state.list',state.songUrl);
   }, [isRefreshing])
 
   return (
@@ -55,7 +51,6 @@ const SongListDetail = (props) =>{
         />
       }
     > 
-      <Text>{state.songUrl}</Text>
       <Image style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
       <Text style={[styles.detail_text,styles.detail_time]}>更新于{playlist.updateTimeMoment} </Text>
       <Text style={[styles.detail_text,styles.detail_name]}>{playlist.name}</Text>
