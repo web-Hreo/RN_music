@@ -1,116 +1,117 @@
 //热点-推荐页
-import React, { Component } from 'react'
-import { Text, StyleSheet, View,Image,ScrollView,RefreshControl } from 'react-native'
+import React, { useReducer,useState, useEffect, useRef } from 'react';
+import { Text, StyleSheet, View,Image,ScrollView,RefreshControl,FlatList } from 'react-native'
 import {pxToDp,screenHeight} from '../../utils/styleKitsKits'
 import {getArtists,getTopList} from '../../api/hot'
 
+const Recommend = () =>{
+  const hotList = [
+    { id:1,title:'披荆斩棘的哥哥',name:'小哥哥',desc:'看了一集 真好看 看了一集 真好看 看了一集 真好看看了一集 真好看 看了一集 真好看 看了一集 真好看' },
+    { id:2,title:'披荆斩棘的哥哥',name:'小哥哥',desc:'看了一集 真好看 看了一集 真好看 看了一集 真好看看了一集 真好看 看了一集 真好看 看了一集 真好看' },
+    { id:3,title:'披荆斩棘的哥哥',name:'小哥哥',desc:'看了一集 真好看 看了一集 真好看 看了一集 真好看看了一集 真好看 看了一集 真好看 看了一集 真好看' },
+    { id:4,title:'披荆斩棘的哥哥',name:'小哥哥',desc:'看了一集 真好看 看了一集 真好看 看了一集 真好看看了一集 真好看 看了一集 真好看 看了一集 真好看' },
+  ]
+  const [musicianList,set_musicianList] = useState([])
+  const [rankingList,set_rankingList] = useState([])
+  const [isRefreshing,setIsRefreshing] = useState(false)//是否处于刷新状态
 
 
-export default class recommend extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      musicianList:[],
-      rankingList:[]
-    }
-    this.getArtists()
-    this.getTopList()
-  }
   //获取 获取热门歌手
-  async getArtists(){
+  const getHotArtists =async() =>{
     const {artists} = await getArtists({offset:0,limit:30})
-    this.setState({ musicianList:artists })
+    set_musicianList(artists)
+    console.log('artists',artists);
   }
   //获取 获取榜单
-  async getTopList(){
+  const getHotTopList =async() =>{
     const {list} = await getTopList()
-    this.setState({ rankingList:list })
+    set_rankingList(list)
   }
-  onRefreshHandle =() =>{
-    this.getTopList()
-    this.getArtists()
+  const onRefreshHandle =() =>{
+    setIsRefreshing(true)
+    getHotTopList()
+    getHotArtists()
+    setIsRefreshing(false)
   }
-  render() {
-    const { musicianList,rankingList } = this.state
-    return (
-      <ScrollView style={styles.recommend} 
-        refreshControl = {
-          <RefreshControl 
-            refreshing={ this.state.isRefreshing }
-            onRefresh = {() => this.onRefreshHandle()}
-          />
-        }
-      >
-        {/* 热点列表 */}
-        <ScrollView showsHorizontalScrollIndicator={false} style={styles.hot} horizontal={true} pagingEnabled={true}>
-          <View style={styles.hot_item}>
-            <Text style={ styles.hot_title}>披荆斩棘的哥哥</Text>
-            <View style={styles.hot_userInfo}>
-              <Image style={styles.hot_avatar} source={{uri:'https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg'}} />
-              <Text style={ styles.hot_userInfo_name}>小弟弟</Text>
-            </View>
-            <View>
-            <Text style={ styles.hot_userInfo_desc}>看了一集 真好看 看了一集 真好看 看了一集 真好看 看了一集 真好看</Text>
-            </View>
-          </View>
-          <View style={styles.hot_item}>
-            <Text style={ styles.hot_title}>披荆斩棘的哥哥</Text>
-            <View style={styles.hot_userInfo}>
-              <Image style={styles.hot_avatar} source={{uri:'https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg'}} />
-              <Text style={ styles.hot_userInfo_name}>小弟弟</Text>
-            </View>
-            <View>
-            <Text style={ styles.hot_userInfo_desc}>看了一集 真好看 看了一集 真好看 看了一集 真好看 看了一集 真好看</Text>
-            </View>
-          </View>
-          <View style={styles.hot_item}>
-            <Text style={ styles.hot_title}>披荆斩棘的哥哥</Text>
-            <View style={styles.hot_userInfo}>
-              <Image style={styles.hot_avatar} source={{uri:'https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg'}} />
-              <Text style={ styles.hot_userInfo_name}>小弟弟</Text>
-            </View>
-            <View>
-            <Text style={ styles.hot_userInfo_desc}>看了一集 真好看 看了一集 真好看 看了一集 真好看 看了一集 真好看</Text>
-            </View>
-          </View>
-        </ScrollView>
 
-        {/* 推荐音乐人 */}
-        <ScrollView showsHorizontalScrollIndicator={false} style={styles.hot} horizontal={true} >
-          {
-            musicianList.map((it,i) =>{
-              return(
-                <View style={styles.musician_item}>
-                  <Image style={styles.musician_avatar} source={{uri:it.img1v1Url}} />
-                  <Text style={ styles.musician_name} numberOfLines={1}>{it.name}</Text>
-                </View>
-              )
-            })
-          }
+  useEffect(()=>{
+    getHotArtists()
+    getHotTopList()
+  },[isRefreshing])
 
-        </ScrollView>
-          
-        {/* 音乐榜 */}
-        <View style={styles.ranking_list}>
-          {
-            rankingList.map((it,i) =>{
-              return(
-                <View style={styles.ranking_item}>
-                  <Image style={styles.musician_avatar} source={{uri:it.coverImgUrl}} />
-                  <View>
-                    <Text style={styles.ranking_name}>{it.name}</Text>
-                    <Text numberOfLines={2} style={styles.ranking_desc}>{it.description}</Text>
-                  </View>
-                </View>
-              )
-            })
-          }
+  const renderHotItem =({item})=>{
+    return(
+      <View style={styles.hot_item}>
+        <Text style={ styles.hot_title}>披荆斩棘的哥哥</Text>
+        <View style={styles.hot_userInfo}>
+          <Image style={styles.hot_avatar} source={{uri:'https://cdn.jsdelivr.net/gh/web-Hreo/nutx_blog/static/avatar.jpg'}} />
+          <Text style={ styles.hot_userInfo_name}>小弟弟</Text>
         </View>
-
-      </ScrollView>
+        <View>
+        <Text style={ styles.hot_userInfo_desc}>看了一集 真好看 看了一集 真好看 看了一集 真好看 看了一集 真好看</Text>
+        </View>
+      </View>
     )
   }
+  const renderMusicianItem =({item})=>{
+    return(
+      <View style={styles.musician_item}>
+        <Image style={styles.musician_avatar} source={{uri:item.img1v1Url}} />
+        <Text style={ styles.musician_name} numberOfLines={1}>{item.name}</Text>
+      </View>
+    )
+  }
+  const renderRankItem =({item})=>{
+    return(
+      <View style={styles.ranking_item}>
+        <Image style={styles.musician_avatar} source={{uri:item.coverImgUrl}} />
+        <View>
+          <Text style={styles.ranking_name}>{item.name}</Text>
+          <Text numberOfLines={2} style={styles.ranking_desc}>{item.description}</Text>
+        </View>
+      </View>
+    )
+  }
+
+  return(
+    <ScrollView style={styles.recommend} 
+      refreshControl = {
+        <RefreshControl 
+          refreshing={ isRefreshing }
+          onRefresh = {() => onRefreshHandle()}
+        />
+    }
+  >
+    {/* 热点列表 */}
+    <FlatList 
+      showsHorizontalScrollIndicator={false}
+      style={styles.hot}
+      horizontal={true}
+      pagingEnabled={true}
+      data={hotList}
+      renderItem={renderHotItem}
+    />
+    {/* 推荐音乐人 */}
+    <FlatList 
+      showsHorizontalScrollIndicator={false}
+      style={styles.hot}
+      horizontal={true}
+      data={musicianList}
+      renderItem={renderMusicianItem}
+    />
+    {/* 音乐榜 */}
+    <FlatList 
+      style={styles.hot}
+      data={rankingList}
+      renderItem={renderRankItem}
+    />
+
+  </ScrollView>
+  )
 }
+
+
+export default Recommend
 
 const styles = StyleSheet.create({
   recommend:{

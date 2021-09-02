@@ -55,6 +55,7 @@ const SongListDetail = (props) =>{
         />
       }
     > 
+      <Text>{state.songUrl}</Text>
       <Image style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
       <Text style={[styles.detail_text,styles.detail_time]}>更新于{playlist.updateTimeMoment} </Text>
       <Text style={[styles.detail_text,styles.detail_name]}>{playlist.name}</Text>
