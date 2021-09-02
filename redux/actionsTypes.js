@@ -1,3 +1,1 @@
-export const INCREASE = 'INCREASE';
-export const DECREASE = 'DECREASE';
-export const RESET = 'RESET';
+export const SET_SONG_URL = 'SET_SONG_URL';

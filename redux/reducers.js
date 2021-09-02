@@ -1,20 +1,15 @@
 import {combineReducers} from 'redux';
-import {INCREASE, DECREASE, RESET, ASYNCINCREASE} from './actionsTypes';
-
+import {SET_SONG_URL} from './actionsTypes';
 // 原始默认state
 const defaultState = {
-  count: 5,
-  factor: 1,
+  songUrl:'',
 };
 
 function counter(state = defaultState, action) {
   switch (action.type) {
-    case INCREASE:
-      return {...state, count: state.count + state.factor};
-    case DECREASE:
-      return {...state, count: state.count - state.factor};
-    case RESET:
-      return {...state, count: 0};
+    case SET_SONG_URL://改变音乐链接
+      console.log('action--------------------',action);
+      return {...state, songUrl:action.data };
     default:
       return state;
   }

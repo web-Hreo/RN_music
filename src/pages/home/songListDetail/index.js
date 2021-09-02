@@ -5,10 +5,10 @@ import {getSongUrl} from '../../../api/public'
 import { pxToDp } from '../../../utils/styleKitsKits'
 // 1.引入connect连接操作
 import {connect} from 'react-redux';
+import {setSongUrl} from '../../../../redux/actions';
 import moment from 'moment'
 
 const SongListDetail = (props) =>{
-  
 
   const id  = props.route.params.songId
   const [playlist,setPlayList] = useState([])//歌单数据
@@ -36,11 +36,16 @@ const SongListDetail = (props) =>{
     console.log(it);
     const {data} = await getSongUrl({id:it.id})
     console.log(data[0].url);
+    console.log(props);
+    props.setSongUrl(data[0].url)
+    console.log(props);
   }
 
   useEffect(() => {
+  console.log('props',props);
+
     getRecommendSong()
-  }, [isRefreshing])
+  }, [isRefreshing,props.songUrl])
 
   return (
     <ScrollView style={styles.songList_detail} 
@@ -51,6 +56,7 @@ const SongListDetail = (props) =>{
         />
       }
     > 
+    <Text style={[styles.detail_text,styles.detail_time]}>{props.songUrl}</Text>
       <Image style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
       <Text style={[styles.detail_text,styles.detail_time]}>更新于{playlist.updateTimeMoment} </Text>
       <Text style={[styles.detail_text,styles.detail_name]}>{playlist.name}</Text>
@@ -82,7 +88,25 @@ const SongListDetail = (props) =>{
     </ScrollView>
   )
 }
-export default SongListDetail
+const mapStateToProps =(state)=> {
+  console.log(state);
+  return {
+    songUrl: state.counter,
+  };
+}
+const mapDispatchToProps=(dispatch)=> {
+  return {
+    onPress_setSongUrl: (data) => dispatch(setSongUrl(data)),
+  };
+}
+// export default connect(mapStateToProps, mapDispatchToProps)(SongListDetail)
+// export default connect(state => ({ songUrl: state.songUrl }),{ setSongUrl})(SongListDetail)
+
+export default connect(
+  state =>({songUrl: state.counter.songUrl}),//是一个函数
+  {setSongUrl}
+)(SongListDetail)
+
 
 const styles = StyleSheet.create({
   songList_detail:{

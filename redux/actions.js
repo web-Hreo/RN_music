@@ -1,17 +1,6 @@
-import {INCREASE, DECREASE, RESET} from './actionsTypes';
+import {SET_SONG_URL} from './actionsTypes';
 
-// 同步action
-const increase = () => ({type: INCREASE});
-const decrease = () => ({type: DECREASE});
-const reset = () => ({type: RESET});
-// 异步action
-const asyncincrease = () => {
-  return dispatch => {
-    setTimeout(() => {
-      dispatch(increase());
-    }, 2000);
-  };
-};
+const setSongUrl =(data) =>({type: SET_SONG_URL,data})
 
-export {increase, decrease, reset, asyncincrease};
+export {setSongUrl};
 

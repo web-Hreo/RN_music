@@ -11,7 +11,7 @@ export default class App extends Component {
       <Provider store={store}>
         <View style={styles.container}>
           <StatusBar backgroundColor='transparent' barStyle='default' translucent={true}></StatusBar>
-          <StackFrame></StackFrame>
+          <StackFrame ></StackFrame>
           <Sound/>
             {/* <Nav/> */}
         </View>
