@@ -16,16 +16,21 @@ const MySound = (props) => {
 
   // 网络资源
   const play  =()=>{
-    music.stop(()=>{
-      music.play();
-    }); 
+    console.log('冲啊。。。。。。。。。。。。');
+    setTimeout(()=>{
+      music.stop(()=>{
+        music.play();
+      });
+    },500) 
   }
   useEffect(() => {
     console.log('MySound-props',props.songUrl);
     
     if(props.songUrl){
       set_musicPath(props.songUrl)
+      console.log('music',music);
       // loaded successfully
+      play()
   console.log('duration in seconds: ' + music.getDuration() + 'number of channels: ' + music.getNumberOfChannels());
     }
   }, [props.songUrl,musicPath])
@@ -34,7 +39,7 @@ const MySound = (props) => {
     <TouchableOpacity activeOpacity={1}  style={styles.sound} >
       <Image style={styles.sound_picUrl}  source={{uri: 'http://p1.music.126.net/4NJvc1HOi4uv7cs4501Bjg==/109951166324714668.jpg',}}/>
       <Text style={styles.sound_musicNam} numberOfLines={1}>回春丹回春丹回春丹回春丹回春丹回春丹</Text>
-      <TouchableOpacity onPress={()=>{play()}}>
+      <TouchableOpacity onPress={()=>play()}>
         <SvgUri style={styles.input_icon} svgXmlData={icon_play} width={pxToDp(12)} height={pxToDp(12)}/>
       </TouchableOpacity>
       
