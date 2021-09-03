@@ -1,4 +1,3 @@
-
 import React, { useReducer,useState, useEffect, useRef } from 'react';
 import {Platform, StyleSheet, Text, View,TouchableOpacity,Image,Alert} from 'react-native';
 import Sound from 'react-native-sound';
@@ -61,12 +60,12 @@ const styles = StyleSheet.create({
       bottom:pxToDp(60),
       alignItems:'center',
       flexDirection:'row',
-      backgroundColor:'rgba(0,0,0,0.8)',
+      backgroundColor:'rgba(0,0,0,0.9)',
       borderRadius:pxToDp(20)
     },
     sound_picUrl:{
-      width:pxToDp(40),
-      height:pxToDp(40),
+      width:pxToDp(38),
+      height:pxToDp(38),
       borderRadius:pxToDp(50)
     },
     sound_musicNam:{

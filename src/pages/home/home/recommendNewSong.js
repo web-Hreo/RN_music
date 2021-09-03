@@ -37,7 +37,7 @@ export default class RecommendNewSong extends Component {
         <View style={styles.newSongBox}>
           {recommendNewSong.map((it,i) =>{ return (
             <View style={styles.songItem} key={i}>
-              <Image style={styles.songImg} source={{uri:it.picUrl}} />
+              <Image resizeMethod="resize" resizeMode="cover" style={styles.songImg} source={{uri:it.picUrl}} />
               <View>
                 <Text style={styles.songName}>{it.name}</Text>
                 <Text style={styles.songSinger}>{it.singer}</Text>

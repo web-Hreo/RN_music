@@ -55,12 +55,12 @@ const SongListDetail = (props) =>{
         />
       }
     > 
-      <Image style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
+      <Image resizeMethod="resize" resizeMode="cover" style={styles.tinyLogo} source={{uri:playlist.coverImgUrl}}></Image>
       <Text style={[styles.detail_text,styles.detail_time]}>更新于{playlist.updateTimeMoment} </Text>
       <Text style={[styles.detail_text,styles.detail_name]}>{playlist.name}</Text>
       {/* 用户 */}
       <View style={styles.creator}>
-        <Image style={styles.creator_avatar} source={{uri:creator.avatarUrl}}></Image>
+        <Image resizeMethod="resize" resizeMode="cover" style={styles.creator_avatar} source={{uri:creator.avatarUrl}}></Image>
         <Text style={[styles.creator_text]}>{creator.nickname}</Text>
       </View>
       {/* 详情 */}

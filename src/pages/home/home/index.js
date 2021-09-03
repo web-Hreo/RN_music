@@ -89,7 +89,7 @@ export default class Home extends Component {
   renderIcon({item}){
     return(
       <View style={styles.ballBox}>
-        <Image  style={styles.ballImg} source={{uri:item.iconUrl}} />
+        <Image resizeMethod="resize" resizeMode="cover" style={styles.ballImg} source={{uri:item.iconUrl}} />
         <Text style={styles.ballText}>{item.name}</Text>
       </View>
     )
@@ -98,7 +98,7 @@ export default class Home extends Component {
   renderSong({item}){
     return(
       <TouchableOpacity activeOpacity={0.9} onPress={() =>this.goReSongDetail(item)} style={styles.song_list} >
-        <Image style={styles.songListImg} source={{uri:item.picUrl}} resizeMode="cover"></Image>
+        <Image resizeMethod="resize" style={styles.songListImg} source={{uri:item.picUrl}} resizeMode="cover"></Image>
         <Text numberOfLines={2} style={styles.song_list_text}>{item.name}</Text>
       </TouchableOpacity> 
     )

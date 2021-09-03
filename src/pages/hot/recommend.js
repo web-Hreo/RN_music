@@ -56,7 +56,7 @@ const Recommend = () =>{
   const renderMusicianItem =({item})=>{
     return(
       <View style={styles.musician_item}>
-        <Image style={styles.musician_avatar} source={{uri:item.img1v1Url}} />
+        <Image resizeMethod="resize" resizeMode="cover" style={styles.musician_avatar} source={{uri:item.img1v1Url}} />
         <Text style={ styles.musician_name} numberOfLines={1}>{item.name}</Text>
       </View>
     )
@@ -64,7 +64,7 @@ const Recommend = () =>{
   const renderRankItem =({item})=>{
     return(
       <View style={styles.ranking_item}>
-        <Image style={styles.musician_avatar} source={{uri:item.coverImgUrl}} />
+        <Image resizeMethod="resize" resizeMode="cover" style={styles.musician_avatar} source={{uri:item.coverImgUrl}} />
         <View>
           <Text style={styles.ranking_name}>{item.name}</Text>
           <Text numberOfLines={2} style={styles.ranking_desc}>{item.description}</Text>
