@@ -1,1 +1,5 @@
-export const SET_SONG_URL = 'SET_SONG_URL';
+export const CHANGE = 'CHANGE'
+export const CONTROL = 'CONTROL'
+export const ID = 'ID'
+export const NAME = 'NAME'
+export const SINGER = 'SINGER'

@@ -5,41 +5,55 @@ import {pxToDp} from '../utils/styleKitsKits'
 import SvgUri from "react-native-svg-uri";
 import {icon_play} from '../assets/iconfont/iconSVG'
 import {connect} from 'react-redux';
+import {getSongUrl} from '../api/public'
+import {changeSong,controlPlay,set_songId,songName,singerName} from '../../redux/actions';
+
+
 
 
 const MySound = (props) => {
-  const [musicPath, set_musicPath] = useState('http://m801.music.126.net/20210903003803/64e3d9c456ee48ccb198297432ac4ccb/jdymusic/obj/wo3DlMOGwrbDjj7DisKw/10455510134/f89a/cb0f/0394/484a2505c45e5249ab114a3f0c21fc8a.mp3')
-  let music
-  music = new Sound(props.songUrl,null,(error)=>{
-    error &&console.log(error);
-  })
+  const [musicPath, set_musicPath] = useState('http://m7.music.126.net/20210906111931/535e78d43a43f647c2dbca9ec0add724/ymusic/0fd6/4f65/43ed/a8772889f38dfcb91c04da915b301617.mp3')
+  let whoosh = {}
 
   // 网络资源
   const play  =()=>{
-    console.log('冲啊。。。。。。。。。。。。');
-    setTimeout(()=>{
-      music.stop(()=>{
         music.play();
-      });
-    },500) 
   }
-  useEffect(() => {
-    console.log('MySound-props',props.songUrl);
-    
-    if(props.songUrl){
-      set_musicPath(props.songUrl)
-      console.log('music',music);
-      // loaded successfully
-      play()
-  console.log('duration in seconds: ' + music.getDuration() + 'number of channels: ' + music.getNumberOfChannels());
+  const changeUrl=(songId)=>{
+    console.log(songId);
+  }
+  useEffect(async () => {
+    let whoosh = {}
+    console.log('====================================');
+    console.log('接受到redux的props.songId',props.songId);
+    console.log('====================================');
+    const musicUrl = await getSongUrl({id:props.songId})
+    console.log(musicUrl.data[0].url);
+    if(props.songId){
+      console.log('whoosh',whoosh);
+      if (whoosh.release) { 
+        console.log('当前存在音乐 需要释放');
+        whoosh.release()
+       };
+      whoosh = new Sound(musicUrl.data[0].url, Sound.MAIN_BUNDLE, (error) => {
+        if (error) {
+          console.log('failed to load the sound', error)
+          return
+        }
+        console.log(whoosh)
+        whoosh.setVolume(1)
+        whoosh.setNumberOfLoops(-1)
+        // 播放完成后的回调，当Loops为无限时不会触发
+          whoosh.play()
+      })
     }
-  }, [props.songUrl,musicPath])
+  }, [props.songId,musicPath])
 
   return (
     <TouchableOpacity activeOpacity={1}  style={styles.sound} >
       <Image style={styles.sound_picUrl}  source={{uri: 'http://p1.music.126.net/4NJvc1HOi4uv7cs4501Bjg==/109951166324714668.jpg',}}/>
       <Text style={styles.sound_musicNam} numberOfLines={1}>回春丹回春丹回春丹回春丹回春丹回春丹</Text>
-      <TouchableOpacity onPress={()=>play()}>
+      <TouchableOpacity onPress={()=>music.play()}>
         <SvgUri style={styles.input_icon} svgXmlData={icon_play} width={pxToDp(12)} height={pxToDp(12)}/>
       </TouchableOpacity>
       
@@ -52,7 +66,19 @@ const MySound = (props) => {
 }
 
 export default connect(
-  state =>({songUrl: state.counter.songUrl})//是一个函数
+  store =>({
+    songList: store.NeatMusicReducer.songList,
+    songOrder: store.NeatMusicReducer.songOrder,
+    songId: store.NeatMusicReducer.songId,
+    singerName: store.NeatMusicReducer.singerName
+  }),//是一个函数
+  {
+    changeSong,
+    controlPlay,
+    set_songId,
+    songName,
+    singerName
+  }
 )(MySound)
 
 const styles = StyleSheet.create({

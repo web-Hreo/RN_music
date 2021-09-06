@@ -12,6 +12,7 @@ import Hot from "../pages/hot";
 import My from "../pages/my";
 import TabBar from '../stack/tabbar'
 import SongListDetail from '../pages/home/songListDetail'
+import SoundDemo from '../components/SoundDemo';
 
 // const Stack = createStackNavigator()
 const Stack = createNativeStackNavigator()
@@ -35,6 +36,7 @@ function StackFrame(){
         <Stack.Screen name="Hot" component={Hot} />
         <Stack.Screen name="My" component={My} />
         <Stack.Screen name="SongListDetail" options={{ title: '精选歌单' }} component={SongListDetail} />
+        <Stack.Screen name="SoundDemo" options={{ title: '音乐demo' }} component={SoundDemo} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -1,21 +1,34 @@
 import {combineReducers} from 'redux';
-import {SET_SONG_URL} from './actionsTypes';
+import {CHANGE,CONTROL,ID,NAME,SINGER} from './actionsTypes';
 // 原始默认state
-const defaultState = {
-  songUrl:'',
-};
+const initialState = {
+  songOrder: 0,
+  songList: [],
+  songId: '',
+  songName: '',
+  singerName: ''
+}
 
-function counter(state = defaultState, action) {
+const NeatMusicReducer = function (state = initialState, action) {
   switch (action.type) {
-    case SET_SONG_URL://改变音乐链接
-      console.log('action--------------------',action);
-      return {...state, songUrl:action.data };
-    default:
-      return state;
+      case CHANGE:
+        return {...state, songList:action.songList };
+      case CONTROL:
+        return {...state, songOrder:action.songOrder };
+      case ID:
+        return {...state, songId:action.songId };
+      case NAME:
+        return {...state, songName:action.songName };
+      case SINGER:
+        return {...state, singerName:action.singerName };
+      default:
+        return state;
   }
 }
 
+
 export default combineReducers({
-  counter,
+  NeatMusicReducer,
 });
+
 

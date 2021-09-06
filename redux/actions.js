@@ -1,6 +1,23 @@
-import {SET_SONG_URL} from './actionsTypes';
+import {CHANGE,CONTROL,ID,NAME,SINGER} from './actionsTypes';
 
-const setSongUrl =(data) =>({type: SET_SONG_URL,data})
-
-export {setSongUrl};
+export const changeSong = songList => ({
+  type: CHANGE,
+  songList
+})
+export const controlPlay = songOrder => ({
+  type: CONTROL,
+  songOrder
+})
+export const set_songId = songId => ({
+  type: ID,
+  songId
+})
+export const songName = songName => ({
+  type: NAME,
+  songName
+})
+export const singerName = singerName => ({
+  type: SINGER,
+  singerName
+})
 

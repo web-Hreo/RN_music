@@ -5,7 +5,7 @@ import {getSongUrl} from '../../../api/public'
 import { pxToDp } from '../../../utils/styleKitsKits'
 // 1.引入connect连接操作
 import {connect} from 'react-redux';
-import {setSongUrl} from '../../../../redux/actions';
+import {set_songId} from '../../../../redux/actions';
 import moment from 'moment'
 
 const SongListDetail = (props) =>{
@@ -33,10 +33,8 @@ const SongListDetail = (props) =>{
   }
   //更改全局音乐变量 
   const musicPlay = async(it)=>{
-    console.log(it);
-    const {data} = await getSongUrl({id:it.id})
-    console.log(data[0].url);
-    props.setSongUrl(data[0].url)
+    console.log(it.id);
+    props.set_songId(it.id)
     console.log(props);
   }
 
@@ -86,23 +84,9 @@ const SongListDetail = (props) =>{
     </ScrollView>
   )
 }
-const mapStateToProps =(state)=> {
-  console.log(state);
-  return {
-    songUrl: state.counter,
-  };
-}
-const mapDispatchToProps=(dispatch)=> {
-  return {
-    onPress_setSongUrl: (data) => dispatch(setSongUrl(data)),
-  };
-}
-// export default connect(mapStateToProps, mapDispatchToProps)(SongListDetail)
-// export default connect(state => ({ songUrl: state.songUrl }),{ setSongUrl})(SongListDetail)
-
 export default connect(
-  state =>({songUrl: state.counter.songUrl}),//是一个函数
-  {setSongUrl}
+  store =>({songId: store.songId}),//是一个函数
+  {set_songId}
 )(SongListDetail)
 
 

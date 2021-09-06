@@ -36,6 +36,9 @@ const Home=(props)=>{
       songId:item.id
     })
   }
+  const goDemo =()=>{
+    props.navigation.navigate('SoundDemo')
+  }
 
   useEffect(() => {
     getHomepageBanner()
@@ -53,10 +56,10 @@ const Home=(props)=>{
     //圆形图标入口列表
   const renderIcon=({item})=>{
     return(
-      <View style={styles.ballBox}>
+      <TouchableOpacity style={styles.ballBox} activeOpacity={0.9} onPress={() =>goDemo(item)}>
         <Image resizeMethod="resize" resizeMode="cover" style={styles.ballImg} source={{uri:item.iconUrl}} />
         <Text style={styles.ballText}>{item.name}</Text>
-      </View>
+      </TouchableOpacity>
     )
   }
   //推荐歌单
