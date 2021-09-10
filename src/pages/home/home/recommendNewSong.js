@@ -1,56 +1,80 @@
-import React, { Component } from 'react'
+import React, { useReducer,useState, useEffect, useRef } from 'react';
 import { Text, StyleSheet, View,Image,ScrollView } from 'react-native'
 import {pxToDp} from '../../../utils/styleKitsKits'
 import PublicTitle from '../../../components/publicTitle'
 import {recommendNewSong} from '../../../api/home'
-
-
-
-export default class RecommendNewSong extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
-      songList:[],
-      randomTitleInfo:{
-        title:'最新音乐',
-        moreText:'播放'
-      },
-      recommendNewSong:[]
-    }
-    this.getRecommendNewSong()
+import {
+  Button,
+  Divider,
+  Actionsheet,
+  useDisclose,
+  Center,
+  NativeBaseProvider,
+} from "native-base"
+const RecommendNewSong=()=>{
+  const { isOpen, onOpen, onClose } = useDisclose()
+  const [songList,set_songList]=useState([])
+  const [recommendSongList,set_recommendSongList]=useState([])
+  const randomTitleInfo ={
+    title:'最新音乐',
+    moreText:'播放'
   }
   //获取 首页-发现-推荐歌单
-  async getRecommendNewSong(){
+  const getRecommendNewSong =async()=>{
     const {result} = await recommendNewSong({limit:9})
     console.log(result);
     result.forEach(it =>{
       const singerList = it.song.artists.map(item =>item.name)
       it.singer = singerList.join('/')
     })
-    this.setState({ recommendNewSong:result })
+    set_recommendSongList(result)
   }
-  render() {
-    const  { randomTitleInfo,recommendNewSong } =this.state
-    return (
-      <View style={styles.newSong}>
-        <PublicTitle {...randomTitleInfo} />
-        <View style={styles.newSongBox}>
-          {recommendNewSong.map((it,i) =>{ return (
-            <View style={styles.songItem} key={i}>
-              <Image resizeMethod="resize" resizeMode="cover" style={styles.songImg} source={{uri:it.picUrl}} />
-              <View>
-                <Text style={styles.songName}>{it.name}</Text>
-                <Text style={styles.songSinger}>{it.singer}</Text>
-              </View>
-            </View>
-          )
-          })}
-        </View>
 
+  useEffect(()=>{
+    getRecommendNewSong()
+  },[])
+  return (
+    <View style={styles.newSong}>
+      <Button onPress={onOpen}>Actionsheet</Button>
+
+<Actionsheet isOpen={isOpen} onClose={onClose}>
+  <Actionsheet.Content>
+    <Divider borderColor="gray.300" />
+    <Actionsheet.Item
+      _text={{
+        color: "blue.500",
+      }}
+    >
+      Save
+    </Actionsheet.Item>
+    <Divider borderColor="gray.300" />
+    <Actionsheet.Item
+      _text={{
+        color: "blue.500",
+      }}
+    >
+      Delete
+    </Actionsheet.Item>
+  </Actionsheet.Content>
+</Actionsheet>
+      <PublicTitle {...randomTitleInfo} />
+      <View style={styles.newSongBox}>
+        {recommendSongList.map((it,i) =>{ return (
+          <View style={styles.songItem} key={i}>
+            <Image resizeMethod="resize" resizeMode="cover" style={styles.songImg} source={{uri:it.picUrl}} />
+            <View>
+              <Text style={styles.songName}>{it.name}</Text>
+              <Text style={styles.songSinger}>{it.singer}</Text>
+            </View>
+          </View>
+        )
+        })}
       </View>
-    )
-  }
+
+    </View>
+  )
 }
+export default RecommendNewSong
 
 const styles = StyleSheet.create({
   newSong:{

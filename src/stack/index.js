@@ -30,6 +30,7 @@ function StackFrame(){
       <Stack.Navigator
         screenOptions={screenOptions}
         initialRouteName="TabBar"
+        barStyle = { { backgroundColor : '#694fad' } }  
       >
         <Stack.Screen name="TabBar" options={{ title: '首页' }} component={TabBar} />
         <Stack.Screen name="Home" component={Home} />
